@@ -1,0 +1,44 @@
+<html>
+<title>Soo0limm's MainPage</title>
+<head>
+<link rel = stylesheet TYPE = "text/css" href = "style.css">
+<script language = "javascript">
+function hash(str){
+        var i=0, H = 15487271
+        for (; i<str.length; i++)
+                H = (H * str.charCodeAt(i)) % 100155623
+        return String(H % 100000000)
+}
+function gotohome() {
+        if (!document.main.ID.value){
+                alert("Enter Your ID!")
+                document.main.ID.focus()
+                return false
+        }
+        if (!document.main.PW.value){
+                alert("Enter Your PASSWORD!")
+                document.main.PW.focus()
+                return false
+        }
+        document.main.ENC.value = hash(document.main.PW.value)
+        return true
+}
+</script>
+</head>
+
+<body>
+<br><br><br><br><br><br>
+<p align = "center"><img src = "pictures/cafestagram.PNG"></p>
+<form name = "main" method = "post" action = "home.php">
+        <p class = main>ID&nbsp;&nbsp;&nbsp;<input type = "id" name = "ID"></p>
+        <p class = main>PW&nbsp;&nbsp;<input type = "password" name ="PW"></p>
+        <input type = "hidden" name = "ENC">
+        <p align = "center"><input class = main type = "submit" value = "SIGN IN" name = "SIGN IN" onclick = "return gotohome()">
+        <input class = main type = "reset" value = "RESET"></p>
+</form>
+<form method = "post" action = "signup.html">
+        <p align = "center"><input class = main type = "submit" value = "SIGN UP"></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<title>Make an Account</title>
+<head>
+<link rel = stylesheet TYPE = "text/css" href = "style.css">
+<script language = "javascript">
+function hash(str){
+	var i = 0, H = 15487271
+	for(;i<str.length; i++)
+		H = (H * str.charCodeAt(i)) % 100155623
+	return String(H % 100000000)
+}
+function chk() {
+	if (!document.join.name.value) {
+		alert("이름을 입력하세요!")
+		document.join.name.focus()
+		return false
+	} 
+	if (!document.join.id.value) {
+		alert("이메일 주소를 입력하세요!")
+		document.join.id.focus()	
+		return false
+	}
+	if (!document.join.pw.value) {
+		alert("비밀번호를 입력하세요!")
+		document.join.pw.focus()
+		return false
+	}
+	if (document.join.name.value != "" && document.join.id.value != "" && document.join.pw.value != ""){
+		document.join.enc.value = hash(document.join.pw.value)
+		document.join.action = "signup.php"
+		document.join.submit();
+	}
+}
+function check(){
+	if (!document.join.id.value){
+		alert("Enter Your ID and then Check!")
+		document.join.id.focus()
+		return false
+	}
+	else {
+		document.join.action = "check.php"
+		document.join.submit();
+	}
+}
+function main(){
+	document.location.href = "main.html"
+}
+</script>
+</head>
+
+<body bgcolor = "#f5f5ff">
+<br><br><br><br><br>
+<div class = signup><h2 class = div>Do not use '#', '^' and '&' in your ID and PW!</h2></div>
+<p class = account><img src = "pictures/logo2.png" width = "60" height = "60"> MAKE AN ACCOUNT </p>
+<form name = "join" method = "post">
+	<p class = signup>NAME <input class = signup type = "text" name = "name"></p>
+	<p class = signup>ID <input class = signup type = "id" name = "id">&nbsp;&nbsp;
+	<input class = signup type = "button" value = "CHECK" onclick = "return check()"></p>
+	<p class = signup>PW <input class = signup type = "password" name ="pw"></p>
+	<input type = "hidden" name = "enc">
+	<p align = "center"><input class = signup type = "button" value = "JOIN" onclick = "return chk()">
+	<input class = signup type = "button" value = "CANCEL" onclick = "return main()"></p>
+</form>
+</body>
+</html>
